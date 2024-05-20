@@ -1,0 +1,290 @@
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Perfil - Datos VCard</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item active">User Profile</li>
+                </ol>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+
+<!-- Main content -->
+<section class="content">
+    <div class="container-fluid">
+
+        <form id="userFormUpd" enctype="multipart/form-data" #formUserUpd="ngForm" (ngSubmit)="onSubmit()">
+
+            <div class="row">
+                <div class="col-md-3">
+
+                    <!-- Profile Image -->
+                    <div class="card card-primary card-outline">
+                        <div class="card-body box-profile">
+                            <div class="text-center">
+                                <input type="hidden" id="id" #id="ngModel" name="id" [(ngModel)]="user.id">
+                                <img class="profile-user-img img-fluid img-circle previsualizarImg_foto"
+                                    src="{{urlresources}}{{user.foto}}" style="width:60%;" alt="User profile picture">
+                                <input type="hidden" value="{{user.foto}}" id="imagen_actual" name="imagen_actual">
+                                <input type="hidden" value="{{user.nickname}}" id="nickname" name="nickname">
+                                <input type="hidden" value="{{user.rol}}" id="rol" name="rol">
+                                <input type="hidden" value="{{user.rolSecondary}}" id="rol_secondary"
+                                    name="rol_secondary">
+                            </div>
+
+                            <h3 class="profile-username text-center">{{user.name}}</h3>
+
+                            <p class="text-muted text-center">{{user.position}}</p>
+
+                            <div class="btn btn-primary btn-block btn-file">
+
+                                <i class="fas fa-paperclip"></i> Cambiar Imagen
+
+                                <input type="file" id="foto" name="foto" (change)="fileChangeEvent($event)">
+
+                            </div>
+
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+
+                    <!-- About Me Box -->
+                    <div class="card card-primary" style="display:none;">
+                        <div class="card-header">
+                            <h3 class="card-title">About Me</h3>
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body">
+                            <strong><i class="fas fa-book mr-1"></i> Education</strong>
+
+                            <p class="text-muted">
+                                B.S. in Computer Science from the University of Tennessee at Knoxville
+                            </p>
+
+                            <hr>
+
+                            <strong><i class="fas fa-map-marker-alt mr-1"></i> Location</strong>
+
+                            <p class="text-muted">Malibu, California</p>
+
+                            <hr>
+
+                            <strong><i class="fas fa-pencil-alt mr-1"></i> Skills</strong>
+
+                            <p class="text-muted">
+                                <span class="tag tag-danger">UI Design</span>
+                                <span class="tag tag-success">Coding</span>
+                                <span class="tag tag-info">Javascript</span>
+                                <span class="tag tag-warning">PHP</span>
+                                <span class="tag tag-primary">Node.js</span>
+                            </p>
+
+                            <hr>
+
+                            <strong><i class="far fa-file-alt mr-1"></i> Notes</strong>
+
+                            <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam
+                                fermentum enim neque.</p>
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+                </div>
+                <!-- /.col -->
+                <div class="col-md-9">
+                    <div class="card">
+                        <div class="card-header p-2">
+                            <ul class="nav nav-pills">
+                                <li class="nav-item"><a class="nav-link active" href="#activity"
+                                        data-toggle="tab">Detallado</a></li>
+                                <li class="nav-item"><a class="nav-link" href="#settings"
+                                        data-toggle="tab">Esenciales</a></li>
+                                <li class="nav-item"><a class="nav-link" href="#sociallinks"
+                                        data-toggle="tab">Redes Sociales</a></li>
+                            </ul>
+                        </div><!-- /.card-header -->
+                        <div class="card-body">
+                            <div class="tab-content">
+                                <div class="active tab-pane" id="activity">
+                                    <div class="form-group row">
+                                        <label for="description" class="col-sm-2 col-form-label">Descripción</label>
+                                        <div class="col-sm-10">
+                                            <textarea class="form-control" id="description" #description="ngModel"
+                                                name="description" [(ngModel)]="user.description"
+                                                placeholder="Descripción"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="about_personal" class="col-sm-2 col-form-label">Información
+                                            Personal</label>
+                                        <div class="col-sm-10">
+                                            <textarea class="form-control" id="aboutPersonal" #aboutPersonal="ngModel"
+                                                name="aboutPersonal" [(ngModel)]="user.aboutPersonal"
+                                                placeholder="Personal"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="about_academy" class="col-sm-2 col-form-label">Información
+                                            Académica</label>
+                                        <div class="col-sm-10">
+                                            <textarea class="form-control" id="aboutAcademy" #aboutAcademy="ngModel"
+                                                name="aboutAcademy" [(ngModel)]="user.aboutAcademy"
+                                                placeholder="Académico"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="about_professional" class="col-sm-2 col-form-label">Información
+                                            Profesional</label>
+                                        <div class="col-sm-10">
+                                            <textarea class="form-control" id="aboutProfessional"
+                                                #aboutProfessional="ngModel" name="aboutProfessional"
+                                                [(ngModel)]="user.aboutProfessional"
+                                                placeholder="Profesional"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="contact_location" class="col-sm-2 col-form-label">Ubicación</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" class="form-control" id="location" #location="ngModel"
+                                                name="location" [(ngModel)]="user.location" placeholder="Ubicación">
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- /.tab-pane -->
+
+                                <div class="tab-pane" id="settings">
+                                    <div class="form-group row">
+                                        <label for="name" class="col-sm-2 col-form-label">Name</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" class="form-control" id="name" #name="ngModel"
+                                            name="name" [(ngModel)]="user.name" placeholder="Name">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="email" class="col-sm-2 col-form-label">Email</label>
+                                        <div class="col-sm-10">
+                                            <input type="email" class="form-control" id="email" #email="ngModel"
+                                            name="email" [(ngModel)]="user.email" placeholder="Email">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="password" class="col-sm-2 col-form-label">Password</label>
+                                        <div class="col-sm-10">
+                                            <input type="password" class="form-control" id="password" #password="ngModel"
+                                                name="password" [(ngModel)]="user.password"
+                                                autocomplete="new-password"
+                                                placeholder="Contraseña mínimo de 8 caracteres">
+                                            <input type="hidden" name="password_actual" value="{{user.password}}">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="position" class="col-sm-2 col-form-label">Position</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" class="form-control" id="position" #position="ngModel"
+                                                name="position" [(ngModel)]="user.position"
+                                                placeholder="Position">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="userWhatsApp" class="col-sm-2 col-form-label">WhatsApp
+                                            Number</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" class="form-control" id="userWhatsApp" #userWhatsApp="ngModel"
+                                                name="userWhatsApp" [(ngModel)]="user.userWhatsApp" placeholder="WhatsApp Number">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="userTelegram" class="col-sm-2 col-form-label">Telegram</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" class="form-control" id="userTelegram" #userTelegram="ngModel"
+                                                name="userTelegram" [(ngModel)]="user.userTelegram" placeholder="Telegram">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="mobile" class="col-sm-2 col-form-label">Mobile
+                                            Number</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" class="form-control" id="mobile" #mobile="ngModel"
+                                                name="mobile" [(ngModel)]="user.mobile" placeholder="Mobile Number">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="website" class="col-sm-2 col-form-label">Web Site</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" class="form-control" id="website" #website="ngModel"
+                                                name="website" [(ngModel)]="user.website" placeholder="Web Site">
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- /.tab-pane -->
+
+                                <div class="tab-pane" id="sociallinks">
+                                    <div class="form-group row">
+                                        <label for="facebookLink" class="col-sm-2 col-form-label">Facebook</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" class="form-control" id="facebookLink" #facebookLink="ngModel"
+                                            name="facebookLink" [(ngModel)]="user.facebookLink" placeholder="Facebook Link">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="twitterLink" class="col-sm-2 col-form-label">Twitter</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" class="form-control" id="twitterLink" #twitterLink="ngModel"
+                                            name="twitterLink" [(ngModel)]="user.twitterLink" placeholder="Twitter Link">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="youtubeLink" class="col-sm-2 col-form-label">Youtube</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" class="form-control" id="youtubeLink" #youtubeLink="ngModel"
+                                            name="youtubeLink" [(ngModel)]="user.youtubeLink" placeholder="Youtube Link Channel">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="linkedinLink" class="col-sm-2 col-form-label">LinkedIn</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" class="form-control" id="linkedinLink" #linkedinLink="ngModel"
+                                            name="linkedinLink" [(ngModel)]="user.linkedinLink" placeholder="LinkedIn Link">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="instagramLink" class="col-sm-2 col-form-label">Instagram</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" class="form-control" id="instagramLink" #instagramLink="ngModel"
+                                            name="instagramLink" [(ngModel)]="user.instagramLink" placeholder="Instagram Link">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="githubLink" class="col-sm-2 col-form-label">Github</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" class="form-control" id="githubLink" #githubLink="ngModel"
+                                            name="githubLink" [(ngModel)]="user.githubLink" placeholder="Github Link">
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- /.tab-pane -->
+                            </div>
+                            <!-- /.tab-content -->
+                        </div><!-- /.card-body -->
+                        <div class="card-footer p-2">
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-danger">Guardar Cambios</button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.card -->
+                </div>
+                <!-- /.col -->
+            </div>
+        </form>
+        <!-- /.row -->
+    </div><!-- /.container-fluid -->
+</section>
+<!-- /.content -->
